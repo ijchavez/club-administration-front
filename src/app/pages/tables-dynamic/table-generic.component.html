@@ -1,0 +1,63 @@
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0" style="display: flex">
+          <div><h3 class="mb-0" style="display: flex; padding: 8px">{{tittle}}</h3></div>
+          <div *ngIf="config.filter" style="position: absolute; right: 150px;"><button class="btn btn-primary" (click)="onFilter()"><i class="fa fa-filter"></i></button></div>
+          <div style="position: absolute; right: 15px;"><button class="btn btn-primary" (click)="onAdd()"><i class="fa fa-plus"></i> Adicionar</button></div>
+        </div>
+        <div class="table-responsive" style="{{getHeightTable()}}">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center" *ngFor="let column of columns">{{column.label}}</th>
+                <th scope="col" *ngIf="config.isRowUpdate"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of page.content; let i = index">
+                <td style="text-align: center;height: 65px" *ngFor="let column of columns">{{getData(row,column)}}</td>
+                <td class="text-right" style="width: 50px" *ngIf="config.isRowUpdate">
+                  <div ngbDropdown placement="{{getPosition(i)}}">
+                    <a  class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a *ngIf="config.details" class="dropdown-item" (click)="onDetails(row)">Ver detalles</a>
+                      <a *ngIf="config.update" class="dropdown-item" (click)="onUpdate(row)">Modificar</a>
+                      <a *ngIf="config.delete" class="dropdown-item" (click)="onDelete(row)">Eliminar</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item" [ngClass]="{'disabled': page.first == true}">
+                <a class="page-link" (click)="onPrevPage()" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only" >Previous</span>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let in of counter(page.totalPages) ;let i = index" [ngClass]="{'active': page.number == i}">
+                <a class="page-link" (click)="onChangePage(i)">{{i + 1}}</a>
+              </li>
+              <li class="page-item" [ngClass]="{'disabled': page.last == true}">
+                <a class="page-link" (click)="onNextPage()">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

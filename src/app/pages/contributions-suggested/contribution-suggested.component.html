@@ -1,0 +1,10 @@
+<app-table-generic
+  [tittle]="tittle"
+  [columns]="columns"
+  [page]="contributionsData$ | async"
+  [config]="config"
+  (changePage)="onchangePage($event)"
+  (update)="onUpdate($event)"
+  (delete)="onDelete($event)"
+  (add)="onAdd()">
+</app-table-generic>

@@ -1,0 +1,77 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSaveOrUpdate()" autocomplete="off" novalidate>
+<h1 mat-dialog-title style="text-align: center">{{tittle}}</h1>
+<div>
+    <div class="pl-lg-4">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-first-name">Nombre</label>
+            <input type="text" id="input-first-name" formControlName="firstName" class="form-control form-control-alternative" placeholder="Nombre">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-last-name">Apellidos</label>
+            <input type="text" id="input-last-name" formControlName="lastName" class="form-control form-control-alternative" placeholder="Apellidos">
+          </div>
+        </div>
+      </div>
+      <div class="row  my-3">
+        <div class="col-lg-6">
+          <ng-select class="custom" [items]="categoriesRoots$ | async"
+                     bindLabel="name"
+                     autofocus
+                     bindValue="id"
+                     notFoundText="No existe ninguna categoría"
+                     [searchable]="true" placeholder="Seleccione la categoría"
+                     (change)="onChangeCategory($event)"
+                     formControlName="categoryId">
+          </ng-select>
+        </div>
+        <div class="col-lg-6" *ngIf="viewSubCategories()">
+          <ng-select class="custom" [items]="subCategories$ | async"
+                     bindLabel="name"
+                     autofocus
+                     bindValue="id"
+                     [minTermLength]="3"
+                     notFoundText="No existe ninguna subcategoria"
+                     [searchable]="true" placeholder="Seleccione la subcategoría"
+                     formControlName="subCategoryId">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Documento</label>
+            <input type="text" id="input-document" formControlName="document" class="form-control form-control-alternative" placeholder="Documento">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Fecha de inicio</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" formControlName="startDate" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="custom-control custom-control-alternative custom-checkbox">
+            <input class="custom-control-input" formControlName="active" id="customCheckMain" type="checkbox">
+            <label class="custom-control-label" for="customCheckMain">
+              <span class="text-muted">{{'Activo?'}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center;">
+  <button type="button" style="width: 48%" class="btn btn-neutral my-3" (click)="onClose()">Cancelar</button>
+  <button type="submit" style="width: 48%" class="btn btn-primary my-3" [disabled]="!memberForm.valid">Aceptar</button>
+</div>
+</form>

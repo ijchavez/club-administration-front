@@ -1,0 +1,59 @@
+
+<form [formGroup]="contributionForm" (ngSubmit)="onSaveOrUpdate()" autocomplete="off" novalidate>
+<h1 mat-dialog-title style="text-align: center">{{tittle}}</h1>
+<div>
+    <div class="pl-lg-4">
+      <div class="row  my-3">
+        <div class="col-lg-12">
+          <ng-select class="custom" [items]="items"
+                     bindLabel="name"
+                     autofocus
+                     bindValue="id"
+                     (change)="onSelect($event)"
+                     notFoundText="No existe ningún socio"
+                     [typeahead]="typeahead"
+                     formControlName="partner"
+                     typeToSearchText="Ingrese una palabra para buscar socios"
+                     [searchable]="true" placeholder="Busque y adicione socios">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row  my-3">
+        <div class="col-lg-12">
+          <ng-select class="custom" [items]="paymentMethods"
+                     autofocus
+                     notFoundText="No existe ningun método de pago"
+                     [searchable]="true" placeholder="Seleccione el método de pago"
+                     formControlName="paymentMethod">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row  my-3">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label">Fecha de la contribución</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Monto a pagar</label>
+            <input type="text" id="input-username" formControlName="amount" class="form-control form-control-alternative" placeholder="Monto a pagar">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center;">
+  <button type="button" style="width: 48%" class="btn btn-neutral my-3" (click)="onClose()">Cancelar</button>
+  <button type="submit" style="width: 48%" class="btn btn-primary my-3" [disabled]="!contributionForm.valid">Aceptar</button>
+</div>
+</form>

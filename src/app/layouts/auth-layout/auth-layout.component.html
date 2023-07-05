@@ -1,0 +1,19 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+         aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+<footer class="py-5">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+    </div>
+  </div>
+</footer>

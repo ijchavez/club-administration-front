@@ -1,12 +1,8 @@
             
   {
-    "/api": {
+    "/": {
       "target": "https://club-administration.onrender.com",
-      "secure": false,
-      "changeOrigin": false,
-      "pathRewrite": {
-        "^/api": ""
-      }
+      "secure": false
     }
   }
   

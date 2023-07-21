@@ -36,6 +36,6 @@ export class CategoryTypesService {
     return this.http.post<CategoryTypeModel>(`${API_CATEGORY_TYPE_URL}/create`, data);
   }
   deleteCategoryType(data: CategoryTypeModel): Observable<any> {
-    return this.http.post<any>(`${API_CATEGORY_TYPE_URL}/delete/${data.id}`, data);
+    return this.http.delete<any>(`${API_CATEGORY_TYPE_URL}/delete/${data.id}`);
   }
 }

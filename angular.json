@@ -57,6 +57,33 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
@@ -69,6 +96,9 @@
           "configurations": {
             "production": {
               "browserTarget": "club-administration-front:build:production"
+            },
+            "dev": {
+              "browserTarget": "club-administration-front:build:dev"
             }
           }
         },
@@ -117,6 +147,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "club-administration-front:serve:production"
+            },
+            "dev": {
+              "devServerTarget": "club-administration-front:serve:dev"
             }
           }
         }

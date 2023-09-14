@@ -16,6 +16,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+#### Dockerfile:
+1- Run `docker build -t club-administration-front . ` to run the dockerfile  
+2- Run `docker tag club-administration-front graviel/club-administration-front:0.0.3` to add a tag version.  
+3- Run `docker push graviel/club-administration-front:0.0.3` to push the new image to the docker hub
+
 
 ## Running unit tests
 
